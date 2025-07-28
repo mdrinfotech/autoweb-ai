@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const codegenRoutes = require('./routes/codegen');
+const codegenRoutes = require('./routes/codegen.js');
 app.use('/api/code', codegenRoutes);
 
 app.get('/', (req, res) => {
