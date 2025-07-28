@@ -11,17 +11,17 @@ router.post('/generate', async (req, res) => {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: `Generate HTML, CSS and JS for: ${prompt}` }],
+      model: 'gpt-3.5-turbo',
+      messages: [{ role: 'user', content: `Generate HTML, CSS and JS for: ${prompt}` }],
       temperature: 0.6,
       max_tokens: 2000
     });
 
     res.json({ code: completion.choices[0].message.content });
   } catch (err) {
-  console.error("OpenAI Error:", err?.response?.data || err.message || err);
-  res.status(500).json({ error: "AI code generation failed" });
-}
-
+    console.error('OpenAI Error:', err.response?.data || err.message || err);
+    res.status(500).json({ error: "AI code generation failed" });
+  }
+});
 
 module.exports = router;
