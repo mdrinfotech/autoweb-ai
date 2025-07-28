@@ -19,9 +19,9 @@ router.post('/generate', async (req, res) => {
 
     res.json({ code: completion.choices[0].message.content });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "AI code generation failed" });
-  }
-});
+  console.error("OpenAI Error:", err?.response?.data || err.message || err);
+  res.status(500).json({ error: "AI code generation failed" });
+}
+
 
 module.exports = router;
